@@ -50,10 +50,6 @@ au BufReadPost *
 autocmd FileType python map <buffer> <F5> :w<CR>:exec '!clear;python3' shellescape(@%, 1)<CR>
 autocmd FileType python imap <buffer> <F5> <esc>:w<CR>:exec '!clear;python3' shellescape(@%, 1)<CR>
 
-"NerdTree
-map <Leader>nt <ESC>:NERDTree<CR>
-let NERDTreeShowHidden=1
-
 "Mouse Mode 
 map <F1> <ESC>:set mouse=a<CR>
 imap <F1> <ESC>:set mouse=a<CR>i 
@@ -83,3 +79,9 @@ set laststatus=2 " turn on bottom bar
 let mapleader = ","
 nnoremap <leader>q :bp<CR>
 nnoremap <leader>w :bn<CR>
+
+
+"NerdTree
+map <Leader>nt <ESC>:NERDTree<CR>
+let NERDTreeShowHidden=1
+
