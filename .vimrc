@@ -32,7 +32,7 @@ set clipboard=unnamed " 시스템 클립보드 사용
 set hlsearch   " 검색한 결과 강조
 set incsearch  " 검색중인 문자열 강조
 set ignorecase " 검색시 대소문자 무시
-set nowrapscan " 검색시 현재 커서에서 아래순
+" set nowrapscan " 검색시 현재 커서에서 아래순
 
 filetype plugin indent on
 au BufNewFile,BufRead *.py set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab autoindent
@@ -45,7 +45,9 @@ set t_Co=256
 set nowrap
 set encoding=utf-8
 set termencoding=utf-8
+set fileencodings=utf-8
 
+" 커서
 set cursorline
 hi cursorline ctermbg=233 cterm=none
 hi cursorlinenr cterm=none
@@ -77,11 +79,6 @@ let NERDTreeShowHidden=1
 hi Search cterm=NONE ctermfg=black ctermbg=green
 
 "AirLine
-" let g:airline#extensions#tabline#enabled = 1 " turn on buffer list
+let g:airline#extensions#tabline#enabled = 1 " turn on buffer list
 let g:airline_theme='hybrid'
 set laststatus=2 " turn on bottom bar
-
-"need install (colorscheme)
-"mkdir -p ~/.vim/colors
-"cd ~/.vim/colors
-"curl -O https://raw.githubusercontent.com/nanotech/jellybeans.vim/master/colors/jellybeans.vim
