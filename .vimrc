@@ -82,3 +82,8 @@ hi Search cterm=NONE ctermfg=black ctermbg=green
 let g:airline#extensions#tabline#enabled = 1 " turn on buffer list
 let g:airline_theme='hybrid'
 set laststatus=2 " turn on bottom bar
+
+autocmd CursorMoved * exe exists("HlUnderCursor")?HlUnderCursor?printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\')):'match none':""
+
+let HlUnderCursor=1
+nnoremap <silent> <F4> :exe "let HlUnderCursor=exists(\"HlUnderCursor\")?HlUnderCursor*-1+1:1"<CR>
