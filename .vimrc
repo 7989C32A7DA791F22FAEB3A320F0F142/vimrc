@@ -74,13 +74,12 @@ let NERDTreeShowHidden = 1
 
 map <Leader>nt <ESC>:NERDTree<CR>
 let NERDTreeShowHidden=1
-hi Search cterm=NONE ctermfg=black ctermbg=yellow 
-
+hi Search cterm=NONE ctermfg=black ctermbg=green
 
 "AirLine
-"let g:airline#extensions#tabline#enabled = 1 " turn on buffer list
-"let g:airline_theme='hybrid'
-"set laststatus=2 " turn on bottom bar
+" let g:airline#extensions#tabline#enabled = 1 " turn on buffer list
+let g:airline_theme='hybrid'
+set laststatus=2 " turn on bottom bar
 
 "need install (colorscheme)
 "mkdir -p ~/.vim/colors
