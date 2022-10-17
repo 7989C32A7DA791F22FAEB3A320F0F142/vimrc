@@ -49,8 +49,10 @@ set fileencodings=utf-8
 
 " 커서
 set cursorline
+"set cursorcolumn
 hi cursorline ctermbg=233 cterm=none
 hi cursorlinenr cterm=none
+"hi cursorcolumn ctermbg=233 cterm=none
 
 " Last Edit Space Move
 au BufReadPost *
