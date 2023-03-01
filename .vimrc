@@ -1,15 +1,17 @@
-set rtp+=~/.vim/bundle/Vundle.vim
+if empty(glob('~/.vim/autoload/plug.vim'))
+silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
-call vundle#begin()
-Plugin 'scrooloose/nerdtree' 
-Plugin 'blueyed/vim-diminactive'
-Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'hdima/python-syntax'
-"Plugin 'neoclide/vim-jsx-improve'
-"Plugin 'vim-python/python-syntax'
-call vundle#end() 
+call plug#begin('~/.vim/plugged')
+Plug 'scrooloose/nerdtree' 
+Plug 'blueyed/vim-diminactive'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'hdima/python-syntax'
+call plug#end()
 
 if has("syntax")
 	syntax on
@@ -26,7 +28,7 @@ set splitright
 set splitbelow
 
 " 기타
-set clipboard=unnamed " 시스템 클립보드 사용
+" set clipboard=unnamed " 시스템 클립보드 사용
 
 " 검색 관련
 set hlsearch   " 검색한 결과 강조
@@ -40,6 +42,8 @@ au BufNewFile,BufRead *.json set tabstop=2 softtabstop=2 shiftwidth=2 expandtab 
 au BufNewFile,BufRead *.js set tabstop=2 softtabstop=2 shiftwidth=2 expandtab smarttab autoindent
 au BufNewFile,BufRead *.html set tabstop=2 softtabstop=2 shiftwidth=2 expandtab smarttab autoindent
 au BufNewFile,BufRead *.jsx set tabstop=2 softtabstop=2 shiftwidth=2 expandtab smarttab autoindent
+au BufNewFile,BufRead Jenkinsfile set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab autoindent
+au BufNewFile,BufRead Jenkinsfile setf groovy
 
 set t_Co=256
 set nowrap
@@ -51,8 +55,8 @@ set fileencodings=utf-8
 set cursorline
 "set cursorcolumn
 hi cursorline ctermbg=233 cterm=none
+hi cursorcolumn ctermbg=233 cterm=none
 hi cursorlinenr cterm=none
-"hi cursorcolumn ctermbg=233 cterm=none
 
 " Last Edit Space Move
 au BufReadPost *
@@ -85,6 +89,19 @@ let g:airline#extensions#tabline#enabled = 1 " turn on buffer list
 let g:airline_theme='hybrid'
 set laststatus=2 " turn on bottom bar
 
+" 설치 관련 ( jellybeans )
+"need install (colorscheme)
+"mkdir -p ~/.vim/colors
+"cd ~/.vim/colors
+"curl -O https://raw.githubusercontent.com/nanotech/jellybeans.vim/master/colors/jellybeans.vim
+
+" 기타 VIMRC 설정 관련 글
+" https://hongsii.github.io/2018/01/29/vim_configuration/
+" https://hcnam.tistory.com/14
+
+
+" 동일 단어 하이라이팅
+" https://stackoverflow.com/a/25887606
 autocmd CursorMoved * exe exists("HlUnderCursor")?HlUnderCursor?printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\')):'match none':""
 
 let HlUnderCursor=1
