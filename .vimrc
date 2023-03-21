@@ -1,3 +1,9 @@
+if empty(glob('~/.vim/colors/jellybeans.vim'))
+silent !curl -fLo ~/.vim/colors/jellybeans.vim --create-dirs
+    \ https://raw.githubusercontent.com/nanotech/jellybeans.vim/master/colors/jellybeans.vim
+source $MYVIMRC
+endif
+
 if empty(glob('~/.vim/autoload/plug.vim'))
 silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -11,6 +17,11 @@ Plug 'nathanaelkane/vim-indent-guides'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'hdima/python-syntax'
+Plug 'davidhalter/jedi-vim'
+Plug 'hynek/vim-python-pep8-indent'
+Plug 'airblade/vim-gitgutter'
+Plug 'yuezk/vim-js'
+Plug 'maxmellon/vim-jsx-pretty'
 call plug#end()
 
 if has("syntax")
@@ -22,13 +33,14 @@ set showmatch
 set autoindent 
 set smartindent
 set title
+set mouse=
 
 " 화면 분할
 set splitright
 set splitbelow
 
 " 기타
-" set clipboard=unnamed " 시스템 클립보드 사용
+set clipboard=unnamed " 시스템 클립보드 사용
 
 " 검색 관련
 set hlsearch   " 검색한 결과 강조
@@ -67,21 +79,27 @@ au BufReadPost *
 " Run Python
 autocmd FileType python map <buffer> <F5> :w<CR>:exec '!clear;python3' shellescape(@%, 1)<CR>
 autocmd FileType python imap <buffer> <F5> <esc>:w<CR>:exec '!clear;python3' shellescape(@%, 1)<CR>
+"function! Termpy()
+"  exec winheight(0)/4."split" | terminal python3 %
+"endfunction
+"nnoremap <C-R> :call Termpy() <CR>
+"autocmd FileType python map <buffer> <F5> <esc>:w<CR>:call Termpy() <CR>
+"autocmd FileType python imap <buffer> <F5> <esc>:w<CR>:call Termpy()<CR>
 
-let g:diminactive_enable_focus = 1
 
 color jellybeans
 
-" need install (plugin)
+" Dim
+let g:diminactive_enable_focus = 1
+
+" Nerdtree
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_auto_colors = 0
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 let python_highlight_all = 1
 let NERDTreeShowHidden = 1
-
 map <Leader>nt <ESC>:NERDTree<CR>
-let NERDTreeShowHidden=1
 hi Search cterm=NONE ctermfg=black ctermbg=green
 
 "AirLine
@@ -89,20 +107,18 @@ let g:airline#extensions#tabline#enabled = 1 " turn on buffer list
 let g:airline_theme='hybrid'
 set laststatus=2 " turn on bottom bar
 
-" 설치 관련 ( jellybeans )
-"need install (colorscheme)
-"mkdir -p ~/.vim/colors
-"cd ~/.vim/colors
-"curl -O https://raw.githubusercontent.com/nanotech/jellybeans.vim/master/colors/jellybeans.vim
-
 " 기타 VIMRC 설정 관련 글
 " https://hongsii.github.io/2018/01/29/vim_configuration/
 " https://hcnam.tistory.com/14
 
-
 " 동일 단어 하이라이팅
 " https://stackoverflow.com/a/25887606
 autocmd CursorMoved * exe exists("HlUnderCursor")?HlUnderCursor?printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\')):'match none':""
-
 let HlUnderCursor=1
 nnoremap <silent> <F4> :exe "let HlUnderCursor=exists(\"HlUnderCursor\")?HlUnderCursor*-1+1:1"<CR>
+
+" JSX / JS
+let g:vim_jsx_pretty_colorful_config = 1 " default 0
+
+" vim python이 안될 경우
+" pip3 install --user --upgrade neovim
