@@ -79,6 +79,10 @@ au BufReadPost *
 " Run Python
 autocmd FileType python map <buffer> <F5> :w<CR>:exec '!clear;python3' shellescape(@%, 1)<CR>
 autocmd FileType python imap <buffer> <F5> <esc>:w<CR>:exec '!clear;python3' shellescape(@%, 1)<CR>
+
+
+
+
 "function! Termpy()
 "  exec winheight(0)/4."split" | terminal python3 %
 "endfunction
@@ -122,3 +126,7 @@ let g:vim_jsx_pretty_colorful_config = 1 " default 0
 
 " vim python이 안될 경우
 " pip3 install --user --upgrade neovim
+
+
+" Remove Whitespace
+command! WhiteSpace %s/\s\+$//e
