@@ -47,14 +47,14 @@ set splitbelow
 set clipboard=unnamed
 set nowrap
 set hlsearch
+set incsearch
 set ignorecase
-set nowrapscan
 set t_Co=256
 set encoding=utf-8
 set termencoding=utf-8
 set fileencodings=utf-8
 set laststatus=2
-"set incsearch
+"set nowrapscan
 
 filetype plugin indent on
 au BufNewFile,BufRead *.py        set tabstop=4 softtabstop=4 shiftwidth=4
@@ -87,7 +87,6 @@ nnoremap <silent> <F4> :exe "let HlUnderCursor=exists(\"HlUnderCursor\")?HlUnder
 
 " (Command) Remove Whitespace
 command! WhiteSpace %s/\s\+$//e
-nnoremap <C-Z> :w<cr>:source ~/.vimrc<cr>
 
 " (Plugin) blueyed/vim-diminactive
 let g:diminactive_enable_focus = 1
@@ -125,3 +124,7 @@ let g:flake8_show_in_file=1
 let g:flake8_max_markers=500
 nnoremap <C-K> :call flake8#Flake8ShowError()<cr>
 "autocmd BufWritePost *.py call flake8#Flake8()
+
+" Debug
+"nnoremap <C-Z> :w<cr>:source ~/.vimrc<cr>
+":set filetype=messages
